@@ -1,36 +1,28 @@
 import mongoose from "mongoose";
 
-const ProductSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true,
-    required: "Name is required",
+const TransactionSchema = new mongoose.Schema({
+  amount: {
+    type: Number,
+    required: "Amount is required",
   },
-  image: {
-    data: Buffer,
-    contentType: String,
+  fromAccount: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Account",
+    required: "From account is required",
+  },
+  toAccount: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Account",
+    required: "To account is required",
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
   description: {
     type: String,
     trim: true,
   },
-  category: {
-    type: String,
-  },
-  quantity: {
-    type: Number,
-    required: "Quantity is required",
-  },
-  price: {
-    type: Number,
-    required: "Price is required",
-  },
-  updated: Date,
-  created: {
-    type: Date,
-    default: Date.now,
-  },
-  shop: { type: mongoose.Schema.ObjectId, ref: "Shop" },
 });
 
-export default mongoose.model("Product", ProductSchema);
+export default mongoose.model("Transaction", TransactionSchema);
