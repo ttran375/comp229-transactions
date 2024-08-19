@@ -2,7 +2,9 @@ import express from "express";
 import userCtrl from "../controllers/user.controller.js";
 import authCtrl from "../controllers/auth.controller.js";
 import shopCtrl from "../controllers/shop.controller.js";
+
 const router = express.Router();
+
 router.route("/api/shop/:shopId").get(shopCtrl.read);
 router
   .route("/api/shops/by/:userId")
@@ -23,4 +25,5 @@ router
 router.route("/api/shops/defaultphoto").get(shopCtrl.defaultPhoto);
 router.param("shopId", shopCtrl.shopByID);
 router.param("userId", userCtrl.userByID);
+
 export default router;

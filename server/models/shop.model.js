@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import crypto from "crypto";
-//const mongoose = require('mongoose');
+
 const ShopSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -25,4 +24,5 @@ const ShopSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
 export default mongoose.model("Shop", ShopSchema);

@@ -3,6 +3,7 @@ import extend from "lodash/extend.js";
 import errorHandler from "./../helpers/dbErrorHandler.js";
 import formidable from "formidable";
 import fs from "fs";
+
 const create = (req, res) => {
   let form = formidable({ keepExtensions: true });
   form.parse(req, async (err, fields, files) => {
@@ -29,6 +30,7 @@ const create = (req, res) => {
     }
   });
 };
+
 const shopByID = async (req, res, next, id) => {
   try {
     let shop = await Shop.findById(id).populate("owner", "_id name").exec();
@@ -44,6 +46,7 @@ const shopByID = async (req, res, next, id) => {
     });
   }
 };
+
 const photo = (req, res, next) => {
   if (req.shop.image.data) {
     res.set("Content-Type", req.shop.image.contentType);
@@ -51,13 +54,16 @@ const photo = (req, res, next) => {
   }
   next();
 };
+
 const defaultPhoto = (req, res) => {
   return null;
 };
+
 const read = (req, res) => {
   req.shop.image = undefined;
   return res.json(req.shop);
 };
+
 const update = (req, res) => {
   let form = formidable({ keepExtensions: true });
   form.parse(req, async (err, fields, files) => {
@@ -85,6 +91,7 @@ const update = (req, res) => {
     }
   });
 };
+
 const remove = async (req, res) => {
   try {
     let shop = req.shop;
@@ -96,6 +103,7 @@ const remove = async (req, res) => {
     });
   }
 };
+
 const listByOwner = async (req, res) => {
   try {
     let shops = await Shop.find({ owner: req.profile._id }).populate(
@@ -109,6 +117,7 @@ const listByOwner = async (req, res) => {
     });
   }
 };
+
 const isOwner = (req, res, next) => {
   const isOwner = req.shop && req.auth && req.shop.owner._id == req.auth._id;
   if (!isOwner) {
@@ -118,6 +127,7 @@ const isOwner = (req, res, next) => {
   }
   next();
 };
+
 export default {
   create,
   shopByID,

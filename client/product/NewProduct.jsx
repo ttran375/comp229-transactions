@@ -71,7 +71,6 @@ export default function NewProduct() {
     values.category && productData.append("category", values.category);
     values.quantity && productData.append("quantity", values.quantity);
     values.price && productData.append("price", values.price);
-
     create(
       {
         shopId: params.shopId,
@@ -88,7 +87,6 @@ export default function NewProduct() {
       }
     });
   };
-
   if (values.redirect) {
     return <Navigate to={"/seller/shop/edit/" + params.shopId} />;
   }
@@ -112,7 +110,7 @@ export default function NewProduct() {
               Upload Photo
               <FileUpload />
             </Button>
-          </label>{" "}
+          </label>
           <span className={classes.filename}>
             {values.image ? values.image.name : ""}
           </span>

@@ -13,7 +13,6 @@ import { remove } from "./api-product.js";
 
 export default function DeleteProduct(props) {
   const [open, setOpen] = useState(false);
-
   const jwt = auth.isAuthenticated();
   const clickButton = () => {
     setOpen(true);
@@ -65,6 +64,7 @@ export default function DeleteProduct(props) {
     </span>
   );
 }
+
 DeleteProduct.propTypes = {
   shopId: PropTypes.string.isRequired,
   product: PropTypes.object.isRequired,
