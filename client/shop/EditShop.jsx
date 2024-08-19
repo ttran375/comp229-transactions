@@ -95,7 +95,6 @@ export default function EditShop() {
       abortController.abort();
     };
   }, []);
-
   const clickSubmit = () => {
     let shopData = new FormData();
     values.name && shopData.append("name", values.name);
@@ -121,7 +120,6 @@ export default function EditShop() {
     const value = name === "image" ? event.target.files[0] : event.target.value;
     setValues({ ...values, [name]: value });
   };
-
   const logoUrl = values.id
     ? `/api/shops/logo/${values.id}?${new Date().getTime()}`
     : "/api/shops/defaultphoto";
@@ -156,7 +154,7 @@ export default function EditShop() {
                   Change Logo
                   <FileUpload />
                 </Button>
-              </label>{" "}
+              </label>
               <span className={classes.filename}>
                 {values.image ? values.image.name : ""}
               </span>

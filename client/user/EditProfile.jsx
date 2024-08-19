@@ -9,11 +9,10 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
-//import auth from '../lib/auth-helper.js'
 import auth from "../lib/auth-helper";
 import { read, update } from "./api-user.js";
 import { Navigate } from "react-router-dom";
-//import { useParams } from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: 600,
@@ -43,14 +42,13 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.openTitle,
   },
 }));
+
 export default function EditProfile() {
   const classes = useStyles();
-  //const { userId } = useParams();
   const [values, setValues] = useState({
     name: "",
     password: "",
     email: "",
-    //open: false,
     seller: false,
     error: "",
     NavigateToProfile: false,
@@ -61,7 +59,6 @@ export default function EditProfile() {
     const signal = abortController.signal;
     read(
       {
-        //userId: userId
         userId: jwt.user._id,
       },
       { t: jwt.token },
@@ -81,7 +78,6 @@ export default function EditProfile() {
     return function cleanup() {
       abortController.abort();
     };
-    //}, [userId])
   }, [jwt.user._id]);
   const clickSubmit = () => {
     const user = {
@@ -92,7 +88,6 @@ export default function EditProfile() {
     };
     update(
       {
-        //userId: userId
         userId: jwt.user._id,
       },
       {
@@ -168,7 +163,7 @@ export default function EditProfile() {
           }
           label={values.seller ? "Active" : "Inactive"}
         />
-        <br />{" "}
+        <br />
         {values.error && (
           <Typography component="p" color="error">
             <Icon color="error" className={classes.error}>

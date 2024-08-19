@@ -56,6 +56,7 @@ const photo = (req, res, next) => {
   }
   next();
 };
+
 const defaultPhoto = (req, res) => {
   return null;
 };

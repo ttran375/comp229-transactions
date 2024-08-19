@@ -13,11 +13,11 @@ import EditShop from "./shop/EditShop";
 import NewProduct from "./product/NewProduct";
 import EditProduct from "./product/EditProduct";
 import Menu from "./core/Menu";
+
 function MainRouter() {
   return (
     <div>
       <Menu />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />

@@ -65,7 +65,6 @@ export default function EditProduct() {
     redirect: false,
     error: "",
   });
-
   const jwt = auth.isAuthenticated();
   useEffect(() => {
     const abortController = new AbortController();
@@ -102,7 +101,6 @@ export default function EditProduct() {
     values.category && productData.append("category", values.category);
     values.quantity && productData.append("quantity", values.quantity);
     values.price && productData.append("price", values.price);
-
     update(
       {
         shopId: params.shopId,
@@ -152,7 +150,7 @@ export default function EditProduct() {
               Change Image
               <FileUpload />
             </Button>
-          </label>{" "}
+          </label>
           <span className={classes.filename}>
             {values.image ? values.image.name : ""}
           </span>

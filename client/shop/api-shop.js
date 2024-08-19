@@ -13,6 +13,7 @@ const create = async (params, credentials, shop) => {
     console.log(err);
   }
 };
+
 const list = async (signal) => {
   try {
     let response = await fetch("/api/shops", {
@@ -24,6 +25,7 @@ const list = async (signal) => {
     console.log(err);
   }
 };
+
 const listByOwner = async (params, credentials, signal) => {
   try {
     let response = await fetch("/api/shops/by/" + params.userId, {
@@ -39,6 +41,7 @@ const listByOwner = async (params, credentials, signal) => {
     console.log(err);
   }
 };
+
 const read = async (params, signal) => {
   try {
     let response = await fetch("/api/shop/" + params.shopId, {
@@ -50,6 +53,7 @@ const read = async (params, signal) => {
     console.log(err);
   }
 };
+
 const update = async (params, credentials, shop) => {
   try {
     let response = await fetch("/api/shops/" + params.shopId, {
@@ -65,6 +69,7 @@ const update = async (params, credentials, shop) => {
     console.log(err);
   }
 };
+
 const remove = async (params, credentials) => {
   try {
     let response = await fetch("/api/shops/" + params.shopId, {
@@ -80,4 +85,5 @@ const remove = async (params, credentials) => {
     console.log(err);
   }
 };
+
 export { create, list, listByOwner, read, update, remove };

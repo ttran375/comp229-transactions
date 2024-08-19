@@ -10,6 +10,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import auth from "../lib/auth-helper.js";
 import { remove } from "./api-shop.js";
+
 export default function DeleteShop(props) {
   const [open, setOpen] = useState(false);
   const jwt = auth.isAuthenticated();
@@ -36,38 +37,29 @@ export default function DeleteShop(props) {
   };
   return (
     <span>
-      {" "}
       <IconButton aria-label="Delete" onClick={clickButton} color="secondary">
-         <DeleteIcon />{" "}
+        <DeleteIcon />
       </IconButton>
-      {" "}
       <Dialog open={open} onClose={handleRequestClose}>
-         <DialogTitle>{"Delete " + props.shop.name}</DialogTitle>{" "}
+        <DialogTitle>{"Delete " + props.shop.name}</DialogTitle>
         <DialogContent>
-          {" "}
           <DialogContentText>
-             Confirm to delete your shop {props.shop.name}. {" "}
+            Confirm to delete your shop {props.shop.name}.
           </DialogContentText>
-          {" "}
         </DialogContent>
-        {" "}
         <DialogActions>
-          {" "}
           <Button onClick={handleRequestClose} color="primary">
-             Cancel {" "}
+            Cancel
           </Button>
-          {" "}
           <Button onClick={deleteShop} color="secondary" autoFocus="autoFocus">
-            Confirm {" "}
+            Confirm
           </Button>
-          {" "}
         </DialogActions>
-        {" "}
       </Dialog>
-      {" "}
     </span>
   );
 }
+
 DeleteShop.propTypes = {
   shop: PropTypes.object.isRequired,
   onRemove: PropTypes.func.isRequired,

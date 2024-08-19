@@ -11,6 +11,7 @@ import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
 import { create } from "./api-shop.js";
 import { Link, Navigate } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: 600,
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "10px",
   },
 }));
+
 export default function NewShop() {
   const classes = useStyles();
   const [values, setValues] = useState({
@@ -83,15 +85,12 @@ export default function NewShop() {
   }
   return (
     <div>
-      {" "}
       <Card className={classes.card}>
-        {" "}
         <CardContent>
-          {" "}
           <Typography type="headline" component="h2" className={classes.title}>
-            New Shop{" "}
+            New Shop
           </Typography>
-          <br />{" "}
+          <br />
           <input
             accept="image/*"
             onChange={handleChange("image")}
@@ -99,18 +98,15 @@ export default function NewShop() {
             id="icon-button-file"
             type="file"
           />
-          {" "}
           <label htmlFor="icon-button-file">
-            {" "}
             <Button variant="contained" color="secondary" component="span">
-               Upload Logo  <FileUpload />{" "}
+              Upload Logo <FileUpload />
             </Button>
-            {" "}
-          </label>{" "}
+          </label>
           <span className={classes.filename}>
             {values.image ? values.image.name : ""}
           </span>
-          <br />{" "}
+          <br />
           <TextField
             id="name"
             label="Name"
@@ -119,7 +115,7 @@ export default function NewShop() {
             onChange={handleChange("name")}
             margin="normal"
           />
-          <br />{" "}
+          <br />
           <TextField
             id="multiline-flexible"
             label="Description"
@@ -130,21 +126,17 @@ export default function NewShop() {
             className={classes.textField}
             margin="normal"
           />
-          <br />{" "}
+          <br />
           {values.error && (
             <Typography component="p" color="error">
-              {" "}
               <Icon color="error" className={classes.error}>
                 error
               </Icon>
-               {values.error}
+              {values.error}
             </Typography>
           )}
-          {" "}
         </CardContent>
-        {" "}
         <CardActions>
-          {" "}
           <Button
             color="primary"
             variant="contained"
@@ -153,15 +145,11 @@ export default function NewShop() {
           >
             Submit
           </Button>
-          {" "}
           <Link to="/seller/shops" className={classes.submit}>
             <Button variant="contained">Cancel</Button>
           </Link>
-          {" "}
         </CardActions>
-        {" "}
       </Card>
-      {" "}
     </div>
   );
 }

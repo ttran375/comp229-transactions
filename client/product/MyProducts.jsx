@@ -48,11 +48,9 @@ const useStyles = makeStyles((theme) => ({
 export default function MyProducts(props) {
   const classes = useStyles();
   const [products, setProducts] = useState([]);
-
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
-
     listByShop(
       {
         shopId: props.shopId,
@@ -69,14 +67,12 @@ export default function MyProducts(props) {
       abortController.abort();
     };
   }, []);
-
   const removeProduct = (product) => {
     const updatedProducts = [...products];
     const index = updatedProducts.indexOf(product);
     updatedProducts.splice(index, 1);
     setProducts(updatedProducts);
   };
-
   return (
     <Card className={classes.products}>
       <Typography type="title" className={classes.title}>
@@ -150,6 +146,7 @@ export default function MyProducts(props) {
     </Card>
   );
 }
+
 MyProducts.propTypes = {
   shopId: PropTypes.string.isRequired,
 };

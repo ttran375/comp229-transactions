@@ -17,6 +17,7 @@ import auth from "../lib/auth-helper";
 import { listByOwner } from "./api-shop.js";
 import { Navigate, Link } from "react-router-dom";
 import DeleteShop from "./DeleteShop";
+
 const useStyles = makeStyles((theme) => ({
   root: theme.mixins.gutters({
     maxWidth: 600,
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "8px",
   },
 }));
+
 export default function MyShops() {
   const classes = useStyles();
   const [shops, setShops] = useState([]);
@@ -74,37 +76,23 @@ export default function MyShops() {
   }
   return (
     <div>
-      {" "}
       <Paper className={classes.root} elevation={4}>
-        {" "}
         <Typography type="title" className={classes.title}>
-           Your Shops {" "}
+          Your Shops
           <span className={classes.addButton}>
-            {" "}
             <Link to="/seller/shop/new">
-              {" "}
               <Button color="primary" variant="contained">
-                {" "}
-                <Icon className={classes.leftIcon}>add_box</Icon> New Shop    
-                {" "}
+                <Icon className={classes.leftIcon}>add_box</Icon> New Shop
               </Button>
-              {" "}
             </Link>
-            {" "}
           </span>
-          {" "}
         </Typography>
-        {" "}
         <List dense>
-          {" "}
           {shops.map((shop, i) => {
             return (
               <span key={i}>
-                {" "}
                 <ListItem button>
-                  {" "}
                   <ListItemAvatar>
-                    {" "}
                     <Avatar
                       src={
                         "/api/shops/logo/" +
@@ -113,42 +101,29 @@ export default function MyShops() {
                         new Date().getTime()
                       }
                     />
-                    {" "}
                   </ListItemAvatar>
-                  {" "}
                   <ListItemText
                     primary={shop.name}
                     secondary={shop.description}
                   />
-                  {" "}
                   {auth.isAuthenticated().user &&
                     auth.isAuthenticated().user._id == shop.owner._id && (
                       <ListItemSecondaryAction>
-                        {" "}
                         <Link to={"/seller/shop/edit/" + shop._id}>
-                          {" "}
                           <IconButton aria-label="Edit" color="primary">
-                             <Edit />
-                            {" "}
+                            <Edit />
                           </IconButton>
-                          {" "}
                         </Link>
-                        {" "}
-                        <DeleteShop shop={shop} onRemove={removeShop} />       
-                        {" "}
+                        <DeleteShop shop={shop} onRemove={removeShop} />
                       </ListItemSecondaryAction>
                     )}
-                  {" "}
                 </ListItem>
-                 <Divider />{" "}
+                <Divider />
               </span>
             );
           })}
-          {" "}
         </List>
-        {" "}
       </Paper>
-      {" "}
     </div>
   );
 }
