@@ -1,18 +1,14 @@
 import mongoose from "mongoose";
 
-const ShopSchema = new mongoose.Schema({
-  name: {
+const AccountSchema = new mongoose.Schema({
+  accountNumber: {
     type: String,
-    trim: true,
-    required: "Name is required",
+    unique: true,
+    required: "Account number is required",
   },
-  description: {
-    type: String,
-    trim: true,
-  },
-  image: {
-    data: Buffer,
-    contentType: String,
+  balance: {
+    type: Number,
+    default: 0,
   },
   owner: {
     type: mongoose.Schema.ObjectId,
@@ -25,4 +21,4 @@ const ShopSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Shop", ShopSchema);
+export default mongoose.model("Account", AccountSchema);
