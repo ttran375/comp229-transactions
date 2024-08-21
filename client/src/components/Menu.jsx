@@ -26,7 +26,7 @@ export default function Menu() {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" color="inherit">
-          MERN Skeleton
+          Account Management
         </Typography>
         <Link to="/">
           <IconButton aria-label="Home" style={isActive(location, "/")}>
@@ -48,14 +48,18 @@ export default function Menu() {
         )}
         {auth.isAuthenticated() && (
           <span>
-            {auth.isAuthenticated().user &&
-              auth.isAuthenticated().user.seller && (
-                <Link to="/seller/shops">
-                  <Button style={isPartActive(location, "/seller/")}>
-                    My Shops
-                  </Button>
-                </Link>
-              )}
+            <Link to="/accounts">
+              <Button style={isPartActive(location, "/accounts")}>
+                My Accounts
+              </Button>
+            </Link>
+            {auth.isAuthenticated().user.active && (
+              <Link to="/transaction/new">
+                <Button style={isActive(location, "/transaction/new")}>
+                  New Transaction
+                </Button>
+              </Link>
+            )}
             <Link to={"/user/" + auth.isAuthenticated().user._id}>
               <Button
                 style={isActive(
