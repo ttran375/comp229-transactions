@@ -15,7 +15,7 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { create } from "./api-user";
+import { create } from "../services/api-user";
 
 const useStyles = makeStyles((theme) => ({
   card: {

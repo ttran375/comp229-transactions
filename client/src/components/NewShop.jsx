@@ -4,12 +4,12 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import FileUpload from "@material-ui/icons/AddPhotoAlternate";
-import auth from "../lib/auth-helper";
+import auth from "../services/auth-helper";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
-import { create } from "./api-shop.js";
+import { create } from "../services/api-shop.js";
 import { Link, Navigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

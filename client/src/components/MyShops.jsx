@@ -13,8 +13,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Edit from "@material-ui/icons/Edit";
 import Divider from "@material-ui/core/Divider";
-import auth from "../lib/auth-helper";
-import { listByOwner } from "./api-shop.js";
+import auth from "../services/auth-helper";
+import { listByOwner } from "../services/api-shop.js";
 import { Navigate, Link } from "react-router-dom";
 import DeleteShop from "./DeleteShop";
 

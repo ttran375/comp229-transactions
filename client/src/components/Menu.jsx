@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
 import Button from "@material-ui/core/Button";
-import auth from "../lib/auth-helper";
+import auth from "../services/auth-helper";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const isActive = (location, path) => {

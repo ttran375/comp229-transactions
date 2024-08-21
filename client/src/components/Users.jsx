@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
-import { list } from "./api-user.js";
+import { list } from "../services/api-user.js";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import ListItem from "@material-ui/core/ListItem";

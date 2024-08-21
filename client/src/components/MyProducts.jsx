@@ -13,7 +13,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
-import { listByShop } from "./api-product.js";
+import { listByShop } from "../services/api-product.js";
 import DeleteProduct from "./DeleteProduct.jsx";
 
 const useStyles = makeStyles((theme) => ({

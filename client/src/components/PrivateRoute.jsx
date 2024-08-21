@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import auth from "./auth-helper";
+import auth from "../services/auth-helper";
 
 const PrivateRoute = ({ children, ...rest }) => {
   const location = useLocation();

@@ -1,18 +1,18 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./core/Home";
-import Users from "./user/Users.jsx";
-import Signup from "./user/Signup.jsx";
-import Signin from "./lib/Signin.jsx";
-import Profile from "./user/Profile.jsx";
-import PrivateRoute from "./lib/PrivateRoute.jsx";
-import EditProfile from "./user/EditProfile.jsx";
-import MyShops from "./shop/MyShops";
-import NewShop from "./shop/NewShop";
-import EditShop from "./shop/EditShop";
-import NewProduct from "./product/NewProduct";
-import EditProduct from "./product/EditProduct";
-import Menu from "./core/Menu";
+import Home from "./components/Home";
+import Users from "./components/Users.jsx";
+import Signup from "./components/Signup.jsx";
+import Signin from "./components/Signin.jsx";
+import Profile from "./components/Profile.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
+import EditProfile from "./components/EditProfile.jsx";
+import MyShops from "./components/MyShops";
+import NewShop from "./components/NewShop";
+import EditShop from "./components/EditShop";
+import NewProduct from "./components/NewProduct";
+import EditProduct from "./components/EditProduct";
+import Menu from "./components/Menu";
 
 function MainRouter() {
   return (

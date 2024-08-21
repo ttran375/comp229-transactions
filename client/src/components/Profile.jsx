@@ -12,9 +12,9 @@ import Typography from "@material-ui/core/Typography";
 import Edit from "@material-ui/icons/Edit";
 import Person from "@material-ui/icons/Person";
 import Divider from "@material-ui/core/Divider";
-import DeleteUser from "./DeleteUser";
-import auth from "../lib/auth-helper.js";
-import { read } from "./api-user.js";
+import DeleteUser from "./DeleteUser.jsx";
+import auth from "../services/auth-helper.js";
+import { read } from "../services/api-user.js";
 import { useLocation, Navigate, Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
