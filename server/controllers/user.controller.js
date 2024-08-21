@@ -79,14 +79,14 @@ const remove = async (req, res) => {
   }
 };
 
-const isSeller = (req, res, next) => {
-  const isSeller = req.profile && req.profile.seller;
-  if (!isSeller) {
+const isActive = (req, res, next) => {
+  const isActive = req.profile && req.profile.active;
+  if (!isActive) {
     return res.status("403").json({
-      error: "User is not a seller",
+      error: "User is not active",
     });
   }
   next();
 };
 
-export default { create, userByID, read, list, remove, update, isSeller };
+export default { create, userByID, read, list, remove, update, isActive };
