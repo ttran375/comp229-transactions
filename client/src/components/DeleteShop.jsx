@@ -9,18 +9,18 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import auth from "../services/auth-helper.js";
-import { remove } from "../services/api-shop.js";
+import { remove } from "../services/api-account.js";
 
-export default function DeleteShop(props) {
+export default function DeleteAccount(props) {
   const [open, setOpen] = useState(false);
   const jwt = auth.isAuthenticated();
   const clickButton = () => {
     setOpen(true);
   };
-  const deleteShop = () => {
+  const deleteAccount = () => {
     remove(
       {
-        shopId: props.shop._id,
+        accountId: props.account._id,
       },
       { t: jwt.token }
     ).then((data) => {
@@ -28,7 +28,7 @@ export default function DeleteShop(props) {
         console.log(data.error);
       } else {
         setOpen(false);
-        props.onRemove(props.shop);
+        props.onRemove(props.account);
       }
     });
   };
@@ -41,17 +41,21 @@ export default function DeleteShop(props) {
         <DeleteIcon />
       </IconButton>
       <Dialog open={open} onClose={handleRequestClose}>
-        <DialogTitle>{"Delete " + props.shop.name}</DialogTitle>
+        <DialogTitle>{"Delete " + props.account.accountNumber}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Confirm to delete your shop {props.shop.name}.
+            Confirm to delete your account {props.account.accountNumber}.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleRequestClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={deleteShop} color="secondary" autoFocus="autoFocus">
+          <Button
+            onClick={deleteAccount}
+            color="secondary"
+            autoFocus="autoFocus"
+          >
             Confirm
           </Button>
         </DialogActions>
@@ -60,7 +64,7 @@ export default function DeleteShop(props) {
   );
 }
 
-DeleteShop.propTypes = {
-  shop: PropTypes.object.isRequired,
+DeleteAccount.propTypes = {
+  account: PropTypes.object.isRequired,
   onRemove: PropTypes.func.isRequired,
 };
