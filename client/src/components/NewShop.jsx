@@ -3,14 +3,12 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import FileUpload from "@material-ui/icons/AddPhotoAlternate";
-import auth from "../services/auth-helper";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
-import { create } from "../services/api-shop.js";
+import { create } from "../services/api-account.js";
 import { Link, Navigate } from "react-router-dom";
+import auth from "../services/auth-helper.js";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -19,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginTop: theme.spacing(5),
     paddingBottom: theme.spacing(2),
-  },
-  error: {
-    verticalAlign: "middle",
   },
   title: {
     marginTop: theme.spacing(2),
@@ -37,42 +32,27 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     marginBottom: theme.spacing(2),
   },
-  input: {
-    display: "none",
-  },
-  filename: {
-    marginLeft: "10px",
-  },
 }));
 
-export default function NewShop() {
+export default function NewAccount() {
   const classes = useStyles();
   const [values, setValues] = useState({
-    name: "",
-    description: "",
-    image: "",
+    accountNumber: "",
+    balance: "",
     redirect: false,
     error: "",
   });
   const jwt = auth.isAuthenticated();
   const handleChange = (name) => (event) => {
-    const value = name === "image" ? event.target.files[0] : event.target.value;
-    setValues({ ...values, [name]: value });
+    setValues({ ...values, [name]: event.target.value });
   };
   const clickSubmit = () => {
-    let shopData = new FormData();
-    values.name && shopData.append("name", values.name);
-    values.description && shopData.append("description", values.description);
-    values.image && shopData.append("image", values.image);
-    create(
-      {
-        userId: jwt.user._id,
-      },
-      {
-        t: jwt.token,
-      },
-      shopData
-    ).then((data) => {
+    const account = {
+      accountNumber: values.accountNumber || undefined,
+      balance: values.balance || 0,
+    };
+    console.log("Creating account with data:", account);
+    create({ userId: jwt.user._id }, { t: jwt.token }, account).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -81,57 +61,34 @@ export default function NewShop() {
     });
   };
   if (values.redirect) {
-    return <Navigate to={"/seller/shops"} />;
+    return <Navigate to="/accounts" />;
   }
   return (
     <div>
       <Card className={classes.card}>
         <CardContent>
           <Typography type="headline" component="h2" className={classes.title}>
-            New Shop
+            New Account
           </Typography>
-          <br />
-          <input
-            accept="image/*"
-            onChange={handleChange("image")}
-            className={classes.input}
-            id="icon-button-file"
-            type="file"
-          />
-          <label htmlFor="icon-button-file">
-            <Button variant="contained" color="secondary" component="span">
-              Upload Logo <FileUpload />
-            </Button>
-          </label>
-          <span className={classes.filename}>
-            {values.image ? values.image.name : ""}
-          </span>
-          <br />
           <TextField
-            id="name"
-            label="Name"
+            id="accountNumber"
+            label="Account Number"
             className={classes.textField}
-            value={values.name}
-            onChange={handleChange("name")}
+            value={values.accountNumber}
+            onChange={handleChange("accountNumber")}
             margin="normal"
           />
-          <br />
           <TextField
-            id="multiline-flexible"
-            label="Description"
-            multiline
-            rows="2"
-            value={values.description}
-            onChange={handleChange("description")}
+            id="balance"
+            label="Initial Balance"
+            value={values.balance}
+            onChange={handleChange("balance")}
             className={classes.textField}
+            type="number"
             margin="normal"
           />
-          <br />
           {values.error && (
             <Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>
-                error
-              </Icon>
               {values.error}
             </Typography>
           )}
@@ -145,7 +102,7 @@ export default function NewShop() {
           >
             Submit
           </Button>
-          <Link to="/seller/shops" className={classes.submit}>
+          <Link to="/accounts" className={classes.submit}>
             <Button variant="contained">Cancel</Button>
           </Link>
         </CardActions>
