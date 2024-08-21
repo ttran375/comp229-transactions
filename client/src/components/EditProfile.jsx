@@ -7,9 +7,8 @@ import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
-import auth from "../services/auth-helper";
+import auth from "../services/auth-helper.js";
 import { read, update } from "../services/api-user.js";
 import { Navigate } from "react-router-dom";
 
@@ -49,7 +48,7 @@ export default function EditProfile() {
     name: "",
     password: "",
     email: "",
-    seller: false,
+    active: false,
     error: "",
     NavigateToProfile: false,
   });
@@ -71,7 +70,7 @@ export default function EditProfile() {
           ...values,
           name: data.name,
           email: data.email,
-          seller: data.seller,
+          active: data.active,
         });
       }
     });
@@ -84,7 +83,7 @@ export default function EditProfile() {
       name: values.name || undefined,
       email: values.email || undefined,
       password: values.password || undefined,
-      seller: values.seller || false,
+      active: values.active || false,
     };
     update(
       {
@@ -108,7 +107,7 @@ export default function EditProfile() {
     setValues({ ...values, [name]: event.target.value });
   };
   const handleCheck = (event, checked) => {
-    setValues({ ...values, seller: checked });
+    setValues({ ...values, active: checked });
   };
   if (values.NavigateToProfile) {
     return <Navigate to={"/user/" + values.userId} />;
@@ -148,7 +147,7 @@ export default function EditProfile() {
           margin="normal"
         />
         <Typography variant="subtitle1" className={classes.subheading}>
-          Seller Account
+          Active Account
         </Typography>
         <FormControlLabel
           control={
@@ -157,18 +156,15 @@ export default function EditProfile() {
                 checked: classes.checked,
                 bar: classes.bar,
               }}
-              checked={values.seller}
+              checked={values.active}
               onChange={handleCheck}
             />
           }
-          label={values.seller ? "Active" : "Inactive"}
+          label={values.active ? "Active" : "Inactive"}
         />
         <br />
         {values.error && (
           <Typography component="p" color="error">
-            <Icon color="error" className={classes.error}>
-              error
-            </Icon>
             {values.error}
           </Typography>
         )}
