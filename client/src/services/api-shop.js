@@ -1,24 +1,13 @@
-const create = async (params, credentials, shop) => {
+const create = async (params, credentials, account) => {
   try {
-    let response = await fetch("/api/shops/by/" + params.userId, {
+    let response = await fetch("/api/accounts/by/" + params.userId, {
       method: "POST",
       headers: {
         Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: "Bearer " + credentials.t,
       },
-      body: shop,
-    });
-    return response.json();
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const list = async (signal) => {
-  try {
-    let response = await fetch("/api/shops", {
-      method: "GET",
-      signal: signal,
+      body: JSON.stringify(account),
     });
     return response.json();
   } catch (err) {
@@ -28,7 +17,7 @@ const list = async (signal) => {
 
 const listByOwner = async (params, credentials, signal) => {
   try {
-    let response = await fetch("/api/shops/by/" + params.userId, {
+    let response = await fetch("/api/accounts/by/" + params.userId, {
       method: "GET",
       signal: signal,
       headers: {
@@ -44,7 +33,7 @@ const listByOwner = async (params, credentials, signal) => {
 
 const read = async (params, signal) => {
   try {
-    let response = await fetch("/api/shop/" + params.shopId, {
+    let response = await fetch("/api/account/" + params.accountId, {
       method: "GET",
       signal: signal,
     });
@@ -54,15 +43,16 @@ const read = async (params, signal) => {
   }
 };
 
-const update = async (params, credentials, shop) => {
+const update = async (params, credentials, account) => {
   try {
-    let response = await fetch("/api/shops/" + params.shopId, {
+    let response = await fetch("/api/accounts/" + params.accountId, {
       method: "PUT",
       headers: {
         Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: "Bearer " + credentials.t,
       },
-      body: shop,
+      body: JSON.stringify(account),
     });
     return response.json();
   } catch (err) {
@@ -72,7 +62,7 @@ const update = async (params, credentials, shop) => {
 
 const remove = async (params, credentials) => {
   try {
-    let response = await fetch("/api/shops/" + params.shopId, {
+    let response = await fetch("/api/accounts/" + params.accountId, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -86,4 +76,4 @@ const remove = async (params, credentials) => {
   }
 };
 
-export { create, list, listByOwner, read, update, remove };
+export { create, listByOwner, read, update, remove };
