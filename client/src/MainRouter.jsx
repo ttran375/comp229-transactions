@@ -7,11 +7,11 @@ import Signin from "./components/Signin.jsx";
 import Profile from "./components/Profile.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import EditProfile from "./components/EditProfile.jsx";
-import MyShops from "./components/MyShops";
-import NewShop from "./components/NewShop";
-import EditShop from "./components/EditShop";
-import NewProduct from "./components/NewProduct";
-import EditProduct from "./components/EditProduct";
+import MyAccounts from "./components/MyAccounts.jsx";
+import NewAccount from "./components/NewAccount.jsx";
+import EditAccount from "./components/EditAccount.jsx";
+import MyTransactions from "./components/MyTransactions.jsx";
+import NewTransaction from "./components/NewTransaction.jsx";
 import Menu from "./components/Menu";
 
 function MainRouter() {
@@ -33,43 +33,42 @@ function MainRouter() {
         />
         <Route path="/user/:userId" element={<Profile />} />
         <Route
-          path="/seller/shops"
+          path="/accounts"
           element={
             <PrivateRoute>
-              <MyShops />
+              <MyAccounts />
             </PrivateRoute>
           }
         />
         <Route
-          path="/seller/shop/new"
+          path="/account/new"
           element={
             <PrivateRoute>
-              <NewShop />
+              <NewAccount />
             </PrivateRoute>
           }
         />
         <Route
-          path="/seller/shop/edit/:shopId"
+          path="/account/edit/:accountId"
           element={
             <PrivateRoute>
-              <EditShop />
+              <EditAccount />
             </PrivateRoute>
           }
         />
         <Route
-          path="/seller/:shopId/products/new"
+          path="/account/:accountId/transactions"
           element={
             <PrivateRoute>
-              <NewProduct />
+              <MyTransactions />
             </PrivateRoute>
           }
-          component={NewProduct}
         />
         <Route
-          path="/seller/:shopId/:productId/edit"
+          path="/transaction/new"
           element={
             <PrivateRoute>
-              <EditProduct />
+              <NewTransaction />
             </PrivateRoute>
           }
         />
