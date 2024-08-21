@@ -7,19 +7,15 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
 import Avatar from "@material-ui/core/Avatar";
-import auth from "../services/auth-helper";
+import auth from "../lib/auth-helper";
 import FileUpload from "@material-ui/icons/AddPhotoAlternate";
 import { makeStyles } from "@material-ui/core/styles";
-import { read, update } from "../services/api-shop.js";
+import { read, update } from "./api-shop.js";
 import { Navigate, useParams } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import MyProducts from "../components/MyProducts";
+import MyProducts from "../product/MyProducts";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    margin: 30,
-  },
   card: {
     textAlign: "center",
     paddingBottom: theme.spacing(2),
@@ -28,10 +24,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
     color: theme.palette.protectedTitle,
     fontSize: "1.2em",
-  },
-  subheading: {
-    marginTop: theme.spacing(2),
-    color: theme.palette.openTitle,
   },
   error: {
     verticalAlign: "middle",
@@ -44,17 +36,6 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: "auto",
     marginBottom: theme.spacing(2),
-  },
-  bigAvatar: {
-    width: 60,
-    height: 60,
-    margin: "auto",
-  },
-  input: {
-    display: "none",
-  },
-  filename: {
-    marginLeft: "10px",
   },
 }));
 
