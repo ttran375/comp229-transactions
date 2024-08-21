@@ -13,7 +13,7 @@ const create = async (req, res) => {
     });
     if (!fromAccount || !toAccount) {
       return res.status(400).json({
-        error: "One or both accounts not found",
+        error: "One or both accounts not valid",
       });
     }
     if (fromAccount.balance < amount) {

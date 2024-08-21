@@ -4,11 +4,6 @@ import errorHandler from "../helpers/dbErrorHandler.js";
 
 const create = async (req, res) => {
   const { accountNumber, balance } = req.body;
-  if (!accountNumber || balance === undefined) {
-    return res.status(400).json({
-      error: "Account number and balance are required.",
-    });
-  }
   let account = new Account({
     accountNumber,
     balance,
